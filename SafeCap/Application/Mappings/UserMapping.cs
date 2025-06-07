@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SafeCap.Domain.Entities;
 using SafeCap.Application.DTOs.Response;
+using SafeCap.Application.DTOs.Request;
 
 namespace SafeCap.Application.Mappings
 {
@@ -10,6 +11,7 @@ namespace SafeCap.Application.Mappings
         {
             CreateMap<User, UserResponse>();
             CreateMap<UserResponse, User>();
+            CreateMap<UserRequest, User>();
         }
     }
 }

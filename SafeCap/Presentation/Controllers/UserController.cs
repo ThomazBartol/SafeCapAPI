@@ -63,5 +63,38 @@ namespace SafeCap.Presentation.Controllers
             var userDto = _mapper.Map<UserResponse>(user);
             return CreatedAtAction(nameof(GetById), new { id = userDto.Id }, userDto);
         }
+
+        [HttpPut("{id:guid}")]
+        [ProducesResponseType((int)HttpStatusCode.NoContent)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> Update(Guid id, UserRequest request)
+        {
+            var existingUser = await _context.Users.FindAsync(id);
+            if (existingUser == null) return NotFound("Usuário não encontrado.");
+
+            existingUser.Name = request.Name;
+            existingUser.Email = request.Email;
+
+            _context.Users.Update(existingUser);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id:guid}")]
+        [ProducesResponseType((int)HttpStatusCode.NoContent)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user == null) return NotFound("Usuário não encontrado.");
+
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }
