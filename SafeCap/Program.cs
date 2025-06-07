@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 Env.Load();
 
 builder.Services.AddAutoMapper(typeof(UserMapping));
+builder.Services.AddAutoMapper(typeof(SensorReadingMapping));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

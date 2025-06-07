@@ -6,8 +6,6 @@ using SafeCap.Infrastructure.Context;
 using SafeCap.Application.DTOs.Response;
 using SafeCap.Application.DTOs.Request;
 using AutoMapper;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-using System.Drawing;
 
 namespace SafeCap.Presentation.Controllers
 {
