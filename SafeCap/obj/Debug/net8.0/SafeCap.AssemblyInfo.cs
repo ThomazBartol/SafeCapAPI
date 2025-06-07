@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SafeCap")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0d7d3b3749276eafb9454bfa928d4e403d7b33d4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c9ad08a70d824d68e4ebab3de5303a007733312f")]
 [assembly: System.Reflection.AssemblyProductAttribute("SafeCap")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SafeCap")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

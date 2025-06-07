@@ -2,11 +2,14 @@ using DotNetEnv;
 using Microsoft.OpenApi.Models;
 using SafeCap.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
+using SafeCap.Application.Mappings;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 Env.Load();
+
+builder.Services.AddAutoMapper(typeof(UserMapping));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

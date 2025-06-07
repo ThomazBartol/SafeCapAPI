@@ -9,6 +9,7 @@ namespace SafeCap.Application.Mappings
         public UserMapping() 
         {
             CreateMap<User, UserResponse>();
+            CreateMap<UserResponse, User>();
         }
     }
 }
