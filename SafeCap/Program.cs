@@ -1,8 +1,12 @@
+using DotNetEnv;
 using Microsoft.OpenApi.Models;
+using SafeCap.Infrastructure.Context;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+Env.Load();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -21,6 +25,11 @@ builder.Services.AddSwaggerGen(swagger =>
         }
     });
 });
+
+var oracleConnectionString = Environment.GetEnvironmentVariable("ORACLE_CONNECTION_STRING");
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseOracle(oracleConnectionString));
 
 var app = builder.Build();
 
