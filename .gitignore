@@ -5,6 +5,8 @@
 
 .env
 
+obj
+
 # asdf
 .tool-versions
 
