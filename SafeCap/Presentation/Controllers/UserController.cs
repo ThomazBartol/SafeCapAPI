@@ -6,6 +6,8 @@ using SafeCap.Infrastructure.Context;
 using SafeCap.Application.DTOs.Response;
 using SafeCap.Application.DTOs.Request;
 using AutoMapper;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using System.Drawing;
 
 namespace SafeCap.Presentation.Controllers
 {
@@ -27,9 +29,23 @@ namespace SafeCap.Presentation.Controllers
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.ServiceUnavailable)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
-        public async Task<ActionResult<List<UserResponse>>> GetAll()
+        public async Task<ActionResult<List<UserResponse>>> GetAll
+            (
+                [FromQuery] string? name,
+                [FromQuery] string? email
+            )
         {
-            var users = await _context.Users.ToListAsync();
+            IQueryable<User> query = _context.Users.AsQueryable();
+            if (!string.IsNullOrEmpty(name))
+            {
+                query = query.Where(u => u.Name != null && u.Name.ToLower() == name.ToLower());
+            }
+            if (!string.IsNullOrEmpty(email))
+            {
+                query = query.Where(u => u.Email != null && u.Email.ToLower() == email.ToLower());
+            }
+
+            var users = await query.ToListAsync();
             var userDtos = _mapper.Map<List<UserResponse>>(users);
             return Ok(userDtos);
         }
