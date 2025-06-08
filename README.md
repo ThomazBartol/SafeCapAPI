@@ -83,6 +83,8 @@ Essa API consiste em gerenciar Usuários, Leituras feitas por sensores em nossos
 
 5. Caso o Swagger não abra sozinho acesse em:
    https://localhost:7266/swagger/index.html
+                     ou
+   http://localhost:5239/swagger/index.html
 
 ## Diagrama de Classes
 
