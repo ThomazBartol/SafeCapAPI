@@ -3,6 +3,11 @@
 **SafeCap** é uma API REST desenvolvida em .NET 8 com Entity Framework Core e banco de dados Oracle, desenvolvida como parte da Global Solution do primeiro semestre de 2025.
 Essa API consiste em gerenciar Usuários, Leituras feitas por sensores em nossos SafeCaps (Bonés Inteligentes), e também Alertas baseados nessas leituras.
 
+## Class Diagram
+
+![Class Diagram](diagrams/img/diagram.png)
+
+
 ## Rotas Disponíveis
 
 ---
