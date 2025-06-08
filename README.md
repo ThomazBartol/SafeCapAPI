@@ -3,11 +3,6 @@
 **SafeCap** é uma API REST desenvolvida em .NET 8 com Entity Framework Core e banco de dados Oracle, desenvolvida como parte da Global Solution do primeiro semestre de 2025.
 Essa API consiste em gerenciar Usuários, Leituras feitas por sensores em nossos SafeCaps (Bonés Inteligentes), e também Alertas baseados nessas leituras.
 
-## Class Diagram
-
-![Class Diagram](diagrams/img/diagram.png)
-
-
 ## Rotas Disponíveis
 
 ---
@@ -31,6 +26,45 @@ Essa API consiste em gerenciar Usuários, Leituras feitas por sensores em nossos
 
 ---
 
+### Leituras do Sensor (`/api/readings`)
+
+- **GET /api/readings** — Lista as Leituras, com filtros opcionais via query params:
+
+  | Query Param  | Tipo    | Descrição                                    | Exemplo         |
+  |--------------|---------|----------------------------------------------|-----------------|
+  | userId       | Guid    | Filtra as leituras pelo id do usuário        | `/api/readings?userId=...` |
+  | startDate    | DateTime | Filtra as leituras após uma data            | `/api/readings?startDate=2025-06-07` |
+  | endDate      | DateTime | Filtra as leituras antes de uma data        | `/api/readings?endDate=2025-06-07` |
+
+- **GET /api/readings/{id}** — Busca leitura pelo ID.
+
+- **POST /api/readings** — Cria uma nova leitura.
+
+- **PUT /api/readings/{id}** — Atualiza uma leitura existente.
+
+- **DELETE /api/readings/{id}** — Remove uma leitura.
+
+---
+
+### Alertas (`/api/alerts`)
+
+- **GET /api/alerts** — Lista os Alertas, com filtros opcionais via query params:
+
+  | Query Param  | Tipo    | Descrição                                    | Exemplo         |
+  |--------------|---------|----------------------------------------------|-----------------|
+  | userId       | Guid    | Filtra os alertas pelo id do usuário         | `/api/alerts?userId=...` |
+  | alertType    | string  | Filtra os alertas pelo tipo de alerta        | `/api/alerts?alertType=LowHumidity` |
+
+- **GET /api/alerts/{id}** — Busca alerta pelo ID.
+
+- **POST /api/alerts** — Cria um novo alerta.
+
+- **PUT /api/alerts/{id}** — Atualiza um alerta existente.
+
+- **DELETE /api/alerts/{id}** — Remove um alerta.
+
+---
+
 ## Instruções de Execução
 
 1. Clone o repositório:
@@ -49,6 +83,11 @@ Essa API consiste em gerenciar Usuários, Leituras feitas por sensores em nossos
 
 5. Caso o Swagger não abra sozinho acesse em:
    https://localhost:7266/swagger/index.html
+
+## Diagrama de Classes
+
+<img src="diagrams/img/diagram.png" alt="Class Diagram" width="400"/>
+
 
 ## 👥 INTEGRANTES DO GRUPO
 ===========================
