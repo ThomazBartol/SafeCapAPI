@@ -24,12 +24,26 @@ namespace SafeCap.Presentation.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(List<SensorReadingResponse>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.ServiceUnavailable)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
-        public async Task<ActionResult<List<SensorReadingResponse>>> GetAll()
+        public async Task<ActionResult<List<SensorReadingResponse>>> GetAll(
+            [FromQuery] Guid? userId,
+            [FromQuery] DateTime? startDate,
+            [FromQuery] DateTime? endDate)
         {
-            var readings = await _context.SensorReadings.ToListAsync();
+            var query = _context.SensorReadings.AsQueryable();
+
+            if (userId.HasValue)
+                query = query.Where(r => r.UserId == userId.Value);
+
+            if (startDate.HasValue)
+                query = query.Where(r => r.Timestamp >= startDate.Value);
+
+            if (endDate.HasValue)
+                query = query.Where(r => r.Timestamp <= endDate.Value);
+
+            var readings = await query.ToListAsync();
             var readingDtos = _mapper.Map<List<SensorReadingResponse>>(readings);
             return Ok(readingDtos);
         }
