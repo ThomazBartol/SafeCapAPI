@@ -82,9 +82,7 @@ Essa API consiste em gerenciar Usuários, Leituras feitas por sensores em nossos
    dotnet run
 
 5. Caso o Swagger não abra sozinho acesse em:
-   https://localhost:7266/swagger/index.html
-                     ou
-   http://localhost:5239/swagger/index.html
+   http://localhost:8080/swagger/index.html
 
 ## Diagrama de Classes
 
