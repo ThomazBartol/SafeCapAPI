@@ -84,6 +84,9 @@ Essa API consiste em gerenciar Usuários, Leituras feitas por sensores em nossos
 5. Caso o Swagger não abra sozinho acesse em:
    http://localhost:8080/swagger/index.html
 
+## Comandos e Scripts Testes da API
+Na raiz do projeto, você encontrará o arquivo comandos-teste.txt com todos os comandos para testar a API além dos scripts de uso do dockerfile.
+
 ## Diagrama de Classes
 
 <img src="diagrams/img/diagram.png" alt="Class Diagram" width="400"/>
