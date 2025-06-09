@@ -36,16 +36,25 @@ var oracleConnectionString = Environment.GetEnvironmentVariable("ORACLE_CONNECTI
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseOracle(oracleConnectionString));
 
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(8080); // Garante que escute no Docker
+});
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+if (app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
 
 app.UseAuthorization();
 
